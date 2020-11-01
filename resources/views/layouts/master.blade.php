@@ -1,23 +1,18 @@
-
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
   <title>AdminLTE 3 | Starter</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
  <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper" id="app">
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  </head>
+  <body class="hold-transition sidebar-mini">
+  <div class="wrapper" id="app">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -80,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fa fa-cog"></i>
               <p>
                 Management
@@ -89,16 +84,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
+                <router-link to="/users" class="nav-link">
+                  <i class="fas fa-users nav-icon"></i>
+                  <p>Users</p>
+                </router-link>
               </li>
             </ul>
           </li>
@@ -133,6 +122,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
       <div class="container-fluid">
         <router-view></router-view>
+        
+        <vue-progress-bar></vue-progress-bar>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
