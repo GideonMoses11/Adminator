@@ -119,7 +119,8 @@ export default {
                 password:'',
                 type:'',
                 bio:'',
-                photo:''
+                photo:'', 
+                error:[]
         }
     },
 
@@ -151,7 +152,7 @@ export default {
                 console.log(response)
                 }).catch((err)=>{
                     if(err.response.status === 422){
-                    this.error = response.data.message.errors
+                    this.error = err.response.data.message.errors
                     console.log(this.error)}else{
                         this.$message({
                         message: `An error occured, pls try again later`,
