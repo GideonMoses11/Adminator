@@ -20,3 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/create','CustomerController@create');
 Route::get('/index','CustomerController@index');
+Route::delete('/destroy/{id}','CustomerController@destroy');
+Route::get('/edit/{id}','CustomerController@edit');
+Route::put('/update/{id}','CustomerController@update');

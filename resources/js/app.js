@@ -28,6 +28,8 @@ const toast = swal.mixin({
   window.toast = toast;
   Vue.prototype.$toast = toast;
 
+  Vue.prototype.$swal = swal;
+
 
 
 
