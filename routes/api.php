@@ -23,3 +23,10 @@ Route::get('/index','CustomerController@index');
 Route::delete('/destroy/{id}','CustomerController@destroy');
 Route::get('/edit/{id}','CustomerController@edit');
 Route::put('/update/{id}','CustomerController@update');
+Route::put('/profile/','CustomerController@profile');
+
+Route::post('/profile/create','ProfileController@create');
+// Route::get('/index','ProfileController@index');
+Route::get('/profile/edit/{id}','ProfileController@edit');
+Route::put('/profile/update/{id}','ProfileController@update');
+Route::put('/profile/','ProfileController@profile');

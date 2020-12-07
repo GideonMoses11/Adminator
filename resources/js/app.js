@@ -70,6 +70,7 @@ const options = {
 //   Vue.component(AlertErrors.name, AlertErrors)
 //   Vue.component(AlertSuccess.name, AlertSuccess)
 
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
@@ -83,6 +84,21 @@ Vue.filter('upText', function(text){
 Vue.filter('myDate', function(created){
     return moment(created).format('MMMM Do YYYY, h:mm:ss a');
 });
+
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue').default
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue').default
+);
 
 /**
  * The following block of code may be used to automatically register your

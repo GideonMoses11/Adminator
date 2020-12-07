@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
+    // public function __construct(){
+    //     $this->middleware('auth:api');
+    // }
     public function index(){
         $customers = Customer::all();
         return $customers;
@@ -46,27 +49,35 @@ class CustomerController extends Controller
         // return response()->json($customer);
     }
 
+    // public function profile(){
+    //     return auth('api')->user();
+    // }
+
     public function update(Request $request, $id){
+        // dd($request->all());
         $customer = Customer::find($id);
         $this->validate($request,[
             'name'=>'required|string',
-            'email'=>'required|string|max:191|unique:customers',
+            'email'=>'required|string|max:191|email',
             'password'=>'required|string|min:6',
             'type'=>'required|string',
             'bio'=>'nullable|string',
-            'photo'=>'nullable|string'
+            'photo'=>'nullable|image|mimes:jpeg,png,jpg,bmp,gif,svg|max:2048'
         ]);
 // // return $request->password;
-//         $customer->name = $request->input('name');
-//         $customer->email = $request->input('email');
-//         $customer->password = Hash::make($request->password);
-//         $customer->type = $request->input('type');
-//         $customer->bio = $request->input('bio');
-//         $customer->photo = $request->input('photo');
-//         $customer->update();
-//         return response()->json('customer updated');
-
-    $customer->update($request->all());
-    return ['message' => 'updated the customers info'];
+        $customer->name = $request->input('name');
+        $customer->email = $request->input('email');
+        $customer->password = Hash::make($request->password);
+        $customer->type = $request->input('type');
+        $customer->bio = $request->input('bio');
+        $customer->photo = $request->input('photo');
+        if($request->has('photo')){
+            $file = $request->file('photo');
+            $file->move(public_path(). '/profilepics/', $file->getClientOriginalName());
+            $url = URL::to( '/profilepics/'. $file->getClientOriginalName());
+            $customer->photo = $url;
+            }
+        $customer->update();
+    return ['message' => 'updated the customers info']; 
     }
 }
